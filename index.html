@@ -38,7 +38,7 @@ function showNextMessage() {
   lastIndex = i;
   o.fadeIn(500);
   /* Delay is proportional to the length of the message */
-  delay = Math.floor(message.length*50);
+  delay = Math.floor(message.length*60);
   console.log(delay);
   setTimeout("showMessage()", delay);
 }
