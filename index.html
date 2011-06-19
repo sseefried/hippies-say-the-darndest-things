@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Hippies Say The Dardnest Things</title>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+var lastIndex = 0;
+
+var messages = [
+  "Bach flower remedies work better on animals because of less negativity",
+  "I got really upset with (partner's kid) over something trivial, so I think maybe we knew each other in a previous life and she maybe stole my boyfriend"
+  ];
+
+function quote(msg) {
+  return ("“" + msg + "”");
+}
+
+function showMessage() {
+ var o = $("#message");
+ var i = lastIndex;
+  o.fadeOut(500, function () {
+    while (i == lastIndex) {
+      i = Math.floor(Math.random()*messages.length);
+    }
+    o.html(quote(messages[i]));
+    lastIndex = i;
+    o.fadeIn(500);
+  });
+}
+
+$(function () {
+  $("#message").html(quote(messages[lastIndex]));
+  setInterval(showMessage, 8000);
+});
+</script>
+<style>
+body {
+  width: 900px;
+  margin: auto;
+  font-family: "Helvetica", san-serif;
+}
+
+h1 {
+  margin-top: 20px;
+  border-top: solid #ccc;
+  border-bottom: solid #ccc;
+  padding: 20px 0 20px 0;
+  font-size: 48pt;
+  text-align: center;
+  color: #BBF;
+  text-shadow: 0px 0px 2px black;
+}
+
+.message {
+  font-family: Georgia;
+  font-size: 36pt;
+  color: #333;
+  text-shadow: 2px 2px 2px #AAA;
+  text-align: center;
+  margin-top: 100px;
+}
+
+</style>
+
+</head>
+<body>
+<h1>Hippies Say the <br/>Darndest Things!</h1>
+<div class="message" id="message"></div>
+</body> </html>
