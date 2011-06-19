@@ -10,9 +10,17 @@
 var lastIndex = 0;
 
 var messages = [
+  "Me: Needs more cowbell<br/>"+
+  "Her: My Feng Shui master says I should listen to bells. I am lacking in metal.<br/>"+
+  "Me: (incredulous) Your psychic says you need more cowbell?<br/>"+
+  "Her: (oblivious) So every morning when I wake up, I ring my bell",
+
   "I really need to manifest some money",
+
   "Acupuncture only bruises if your mind is resisting the healing process",
+
   "Bach flower remedies work better on animals because of less negativity",
+
   "I got really upset with [my partner's kid] over something trivial, so I think maybe we knew each other in a previous life and she maybe stole my boyfriend"
   ];
 
@@ -20,22 +28,29 @@ function quote(msg) {
   return ("“" + msg + "”");
 }
 
+function showNextMessage() {
+  var i = 0, message, o = $("#message"), delay = 0;
+  while (i == lastIndex) {
+    i = Math.floor(Math.random()*messages.length);
+  }
+  message = messages[i];
+  o.html(quote(message));
+  lastIndex = i;
+  o.fadeIn(500);
+  /* Delay is proportional to the length of the message */
+  delay = Math.floor(message.length*50);
+  console.log(delay);
+  setTimeout("showMessage()", delay);
+}
+
 function showMessage() {
- var o = $("#message");
- var i = lastIndex;
-  o.fadeOut(500, function () {
-    while (i == lastIndex) {
-      i = Math.floor(Math.random()*messages.length);
-    }
-    o.html(quote(messages[i]));
-    lastIndex = i;
-    o.fadeIn(500);
-  });
+ $("#message").fadeOut(500, showNextMessage);
 }
 
 $(function () {
-  $("#message").html(quote(messages[lastIndex]));
-  setInterval(showMessage, 8000);
+/*  $("#message").html(quote(messages[lastIndex])); */
+  showNextMessage();
+/*  setInterval(showMessage, 8000); */
 });
 </script>
 <style>
@@ -61,7 +76,7 @@ h1 {
   font-size: 36pt;
   color: #333;
   text-shadow: 2px 2px 2px #AAA;
-  text-align: center;
+/*  text-align: center; */
   margin-top: 100px;
 }
 
